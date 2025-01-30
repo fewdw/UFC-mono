@@ -1,0 +1,59 @@
+# =========================
+# NEXT.JS (TypeScript)
+# =========================
+node_modules/
+.next/
+out/
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.DS_Store
+
+# =========================
+# FLASK
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+instance/
+.env
+.venv/
+.env.local
+.DS_Store
+.idea/
+
+# =========================
+# SPRING BOOT (Java + Maven)
+# =========================
+target/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+.mvn/
+.mvnw
+.mvnw.cmd
+.env
+.DS_Store
+
+# Maven Wrapper
+/.mvn/wrapper/maven-wrapper.jar
+
+# IDE/Editor files (Optional)
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+
+# =========================
+# SYSTEM FILES
+# =========================
+.DS_Store
+Thumbs.db
