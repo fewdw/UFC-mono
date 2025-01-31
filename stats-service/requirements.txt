@@ -1,1 +1,4 @@
 flask
+Flask-Cors
+beautifulsoup4
+requests
