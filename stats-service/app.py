@@ -1,18 +1,28 @@
+import os
+
 from flask import Flask
 from flask_cors import CORS
+from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
 
-import src.Scrape.Matchup as Matchup
+from src.Stats.StatsController import stats
 
-from src.Test.TestController import test_bp
-
+load_dotenv()
 app = Flask(__name__)
 CORS(app)
+db_url = os.getenv('SQLALCHEMY_DATABASE_URI')
 
-app.register_blueprint(test_bp, url_prefix='/test')
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-@app.route("/")
+app.register_blueprint(stats, url_prefix='/stats')
+
+
+@app.route("/", methods=["GET"])
 def home():
-    return "Stats Service Online!"
+    return "Stats service online!"
 
 
 if __name__ == "__main__":

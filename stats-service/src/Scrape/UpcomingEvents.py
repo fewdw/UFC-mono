@@ -1,5 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
+import hashlib
+
+
+def generate_unique_id(event_name, event_date, event_location):
+    combined_string = f"{event_name}{event_date}{event_location}"
+    hash_object = hashlib.sha256(combined_string.encode())
+    return hash_object.hexdigest()
+
 
 def get_upcoming_events():
     url = "http://www.ufcstats.com/statistics/events/upcoming?page=all"
@@ -20,15 +28,18 @@ def get_upcoming_events():
                 event_link = row.find('a', class_='b-link')['href']
                 event_location = row.find_all('td', class_='b-statistics__table-col')[1].text.strip()
 
+                event_id = generate_unique_id(event_name, event_date, event_location)
+
                 event = {
                     'event_name': event_name,
                     'event_date': event_date,
                     'event_link': event_link,
                     'event_location': event_location,
                     'event_happened': False,
+                    'id': event_id
                 }
                 events.append(event)
 
         return events
     else:
-        Exception("Failed to fetch upcoming events")
+        raise Exception("Failed to fetch upcoming events")
