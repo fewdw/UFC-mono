@@ -48,11 +48,6 @@ services:
 
   stats-service:
     build: ./stats-service
-    depends_on:
-      - postgres-db
-    environment:
-      SQLALCHEMY_DATABASE_URI: postgresql://admin:password@postgres-db:5432/statsdb
-      SQLALCHEMY_TRACK_MODIFICATIONS: false
     ports:
       - "5002:5002"
 
