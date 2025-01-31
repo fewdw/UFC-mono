@@ -9,7 +9,7 @@ def generate_unique_id(event_name, event_date, event_location):
     return hash_object.hexdigest()
 
 
-def get_upcoming_events():
+def scrape_upcoming_events():
     url = "http://www.ufcstats.com/statistics/events/upcoming?page=all"
 
     response = requests.get(url)
@@ -27,6 +27,9 @@ def get_upcoming_events():
                 event_date = row.find('span', class_='b-statistics__date').text.strip()
                 event_link = row.find('a', class_='b-link')['href']
                 event_location = row.find_all('td', class_='b-statistics__table-col')[1].text.strip()
+
+                if event_location == "---":
+                    continue
 
                 event_id = generate_unique_id(event_name, event_date, event_location)
 

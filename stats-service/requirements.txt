@@ -2,6 +2,8 @@ flask
 Flask-Cors
 beautifulsoup4
 requests
-psycopg2-binary
-Flask-SQLAlchemy
 python-dotenv
+pymongo
+dnspython
+pymongo
+flask-pymongo

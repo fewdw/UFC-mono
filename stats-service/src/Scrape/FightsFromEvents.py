@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def fight_from_events(event_url):
+def scrape_fight_links(event_url):
     response = requests.get(event_url)
 
     if response.status_code == 200:
