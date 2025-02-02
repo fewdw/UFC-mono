@@ -1,1 +1,9 @@
-flask
+flask~=3.1.0
+Flask-Cors
+requests~=2.32.3
+python-dotenv~=1.0.1
+pymongo~=4.11
+dnspython
+pymongo
+flask-pymongo
+Werkzeug~=3.1.3

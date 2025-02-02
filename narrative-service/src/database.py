@@ -1,5 +1,7 @@
 import os
 from pymongo import MongoClient
+from datetime import date
+
 
 class Database:
     def __init__(self):
@@ -7,14 +9,8 @@ class Database:
         self.client = MongoClient(mongo_uri)
         self.db = self.client["stats-db"]
 
-    def events(self):
-        return self.db["events"]
-
-    def card(self):
-        return self.db["card"]
-
-    def info(self):
-        return self.db["info"]
+    def collection(self):
+        return self.db["collection"]
 
 
 database = Database()
