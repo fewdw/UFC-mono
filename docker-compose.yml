@@ -6,9 +6,9 @@ services:
     container_name: postgres-db
     restart: always
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: ufcdb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
@@ -19,8 +19,8 @@ services:
     container_name: mongo-db
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     ports:
       - "27017:27017"
     volumes:
@@ -36,9 +36,9 @@ services:
     container_name: mongo-express
     restart: always
     environment:
-      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongo-db:27017/?authSource=admin
-      ME_CONFIG_BASICAUTH_USERNAME: admin
-      ME_CONFIG_BASICAUTH_PASSWORD: password
+      ME_CONFIG_MONGODB_URL: ${ME_CONFIG_MONGODB_URL}
+      ME_CONFIG_BASICAUTH_USERNAME: ${ME_CONFIG_BASICAUTH_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${ME_CONFIG_BASICAUTH_PASSWORD}
     ports:
       - "8083:8081"
     depends_on:
@@ -50,9 +50,9 @@ services:
     depends_on:
       - postgres-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/authdb
-      SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
     ports:
       - "8081:8081"
 
@@ -61,9 +61,9 @@ services:
     depends_on:
       - postgres-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/livescoringdb
-      SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: ${LIVESCORING_SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${LIVESCORING_SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${LIVESCORING_SPRING_DATASOURCE_PASSWORD}
     ports:
       - "8082:8082"
 
@@ -77,7 +77,7 @@ services:
     depends_on:
       - mongo-db
     environment:
-      MONGO_URI: mongodb://admin:password@mongo-db:27017/narrative-db?authSource=admin
+      MONGO_URI: ${MONGO_URI_NARRATIVE}
     ports:
       - "5001:5001"
 
@@ -86,7 +86,7 @@ services:
     depends_on:
       - mongo-db
     environment:
-      MONGO_URI: mongodb://admin:password@mongo-db:27017/stats-db?authSource=admin
+      MONGO_URI: ${MONGO_URI_STATS}
     ports:
       - "5002:5002"
 
