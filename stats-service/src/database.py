@@ -12,6 +12,9 @@ class Database:
     def events(self):
         return self.db["events"]
 
+    def card(self):
+        return self.db["card"]
+
     def info(self):
         return self.db["info"]
 

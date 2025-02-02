@@ -1,9 +1,10 @@
-flask
+flask~=3.1.0
 Flask-Cors
-beautifulsoup4
-requests
-python-dotenv
-pymongo
+beautifulsoup4~=4.12.3
+requests~=2.32.3
+python-dotenv~=1.0.1
+pymongo~=4.11
 dnspython
 pymongo
 flask-pymongo
+Werkzeug~=3.1.3

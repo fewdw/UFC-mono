@@ -1,14 +1,21 @@
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
+from werkzeug.exceptions import BadRequest
 
+from src.Card.CardService import CardService
 from src.Scrape.FightCardInfo import scrape_fight_card
 from src.Scrape.FightsFromEvents import scrape_fight_links
 
 card = Blueprint("card", __name__)
 
+card_service = CardService()
 
-@card.route("/", methods=["GET"])
+
+@card.route("/", methods=["POST"])
 def get_card():
-    links = scrape_fight_links("http://www.ufcstats.com/event-details/80dbeb1dd5b53e64")
-    info = scrape_fight_card(links)
-    return info:D
+    try:
+        card_url = request.get_json()['card_url']
+    except Exception as e:
+        return jsonify({"error": f"could not get the card url, {str(e)}"}), 400
 
+    card_info = card_service.get_card_info(card_url)
+    return jsonify(card_info)

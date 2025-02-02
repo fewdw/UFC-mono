@@ -4,6 +4,10 @@ from src.Scrape.UpcomingEvents import scrape_upcoming_events
 from src.database import database
 
 
+def get_past_events():
+    return list(database.events().find({"event_happened": True}, {"_id": 0}))
+
+
 class EventService:
 
     def __init__(self):
@@ -14,6 +18,7 @@ class EventService:
         return list(database.events().find({"event_happened": False}, {"_id": 0}))
 
     def get_past_events(self):
+        self.fix_events()
         return list(database.events().find({"event_happened": True}, {"_id": 0}))
 
     """
@@ -49,4 +54,4 @@ class EventService:
 
     def older_than_5(self, date):
         date = datetime.strptime(date, "%Y-%m-%d")
-        return (datetime.now() - date).days > 5
+        return (datetime.now() - date).days > 4
