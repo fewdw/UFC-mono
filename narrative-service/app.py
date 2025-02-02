@@ -10,7 +10,7 @@ app.register_blueprint(narrative, url_prefix="/narrative")
 
 @app.route("/")
 def home():
-    return "Narrative Service Running!"
+    return "Narrative Service Running! 2"
 
 
 if __name__ == "__main__":
