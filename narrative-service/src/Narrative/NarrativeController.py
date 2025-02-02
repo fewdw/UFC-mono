@@ -6,6 +6,7 @@ narrative = Blueprint("narrative", __name__)
 
 narrative_service = NarrativeService()
 
-@narrative.route("/")
-def get_narrative():
-    return narrative_service.hi()
+# @narrative.route("/test")
+# def get_narrative():
+#     return narrative_service.hi()
+
